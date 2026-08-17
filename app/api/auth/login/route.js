@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { scopes } from '../../../../lib/graph';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   const clientId = process.env.MS_CLIENT_ID;
   const tenant = process.env.MS_TENANT_ID || 'common';

@@ -6,6 +6,8 @@ function sanitizeFilename(name) {
   return name.replace(/[\\/:*?"<>|]/g, '_').trim().slice(0, 80) || 'untitled';
 }
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request) {
   const tokenResult = await getValidAccessToken();
   if (tokenResult.error) {

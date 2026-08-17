@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getValidAccessToken, graphFetch, persistRefreshedSession } from '../../../lib/graph';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   const tokenResult = await getValidAccessToken();
   if (tokenResult.error) {

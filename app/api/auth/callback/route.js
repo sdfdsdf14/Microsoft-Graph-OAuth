@@ -6,6 +6,8 @@ import {
   cookieName,
 } from '../../../../lib/graph';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request) {
   const { searchParams, origin } = new URL(request.url);
   const code = searchParams.get('code');
