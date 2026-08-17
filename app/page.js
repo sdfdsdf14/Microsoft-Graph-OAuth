@@ -40,6 +40,7 @@ export default function Page() {
   const [startFrom, setStartFrom] = useState(1);
   const [limit, setLimit] = useState(50);
   const [mode, setMode] = useState('text');
+  const [loginEmail, setLoginEmail] = useState('');
   const [extracting, setExtracting] = useState(false);
   const [error, setError] = useState('');
 
@@ -147,13 +148,40 @@ export default function Page() {
               </>
             ) : (
               <>
-                <p className="helper-text" style={{ marginBottom: 16 }}>
-                  Sign in with your Microsoft account to grant read-only access to your
-                  mailbox via Microsoft Graph. No password is ever seen or stored by this app.
-                </p>
-                <a href="/api/auth/login" style={{ textDecoration: 'none' }}>
+                <label className="field-label">Email Address</label>
+                <input
+                  type="email"
+                  placeholder="you@outlook.com"
+                  value={loginEmail}
+                  onChange={(e) => setLoginEmail(e.target.value)}
+                  style={{ marginBottom: 16 }}
+                />
+
+                <label className="field-label">Password</label>
+                <div
+                  style={{
+                    background: 'var(--field)',
+                    border: '1px solid var(--field-border)',
+                    borderRadius: 12,
+                    padding: '12px 14px',
+                    fontSize: 13,
+                    color: 'var(--muted)',
+                    marginBottom: 16,
+                    lineHeight: 1.5,
+                  }}
+                >
+                  🔒 You'll enter this on Microsoft's own sign-in page in the next
+                  step — this app never sees or stores it. Microsoft has retired
+                  app-password access for Outlook, so this is the only method that
+                  still works.
+                </div>
+
+                <a
+                  href={`/api/auth/login${loginEmail ? `?email=${encodeURIComponent(loginEmail)}` : ''}`}
+                  style={{ textDecoration: 'none' }}
+                >
                   <button className="btn btn-primary" disabled={me.loading}>
-                    🔗 Connect Outlook Account
+                    🔗 Connect to Outlook
                   </button>
                 </a>
               </>
